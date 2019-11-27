@@ -1,0 +1,65 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'ots.cmsdoc'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+
+repositories {
+	mavenLocal()
+	maven {
+		url "http://pr.dev.cwds.io/artifactory/repo"
+	}
+	mavenCentral()
+	maven {
+		url 'https://repo.spring.io/plugins-release/'
+	}
+	maven {
+		url 'http://logicaldoc.sourceforge.net/maven'
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	compile 'org.springframework.boot:spring-boot-configuration-processor:2.2.1.RELEASE'
+	// https://mvnrepository.com/artifact/org.assertj/assertj-core
+	testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+	//annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons
+	compile group: 'org.springframework.data', name: 'spring-data-commons', version: '2.2.2.RELEASE'
+	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+	compile group: "gov.ca.cwds.api.libs", name: "db2jcc", version: "4"
+	compile group: "gov.ca.cwds.api.libs", name: "db2jcc_license_cisuz", version: "1"
+	compile group: 'org.wso2.apache.httpcomponents', name: 'httpclient', version: '4.3.1.wso2v1'
+	compile group: "gov.ca.cwds.api.libs", name: "libKeyJNI", version: "1", ext: "dylib"
+	compile group: "gov.ca.cwds.api.libs", name: "libKeyJNI", version: "1", ext: "so"
+	compile group: "gov.ca.cwds.api.libs", name: "libLZW", version: "1", ext: "dylib"
+	compile group: "gov.ca.cwds.api.libs", name: "libLZW", version: "1", ext: "so"
+	compile group: "gov.ca.cwds.api.libs", name: "libstdc", version: "6", ext: "so"
+	compile group: "gov.ca.cwds.api.libs", name: "lzw", version: "1", ext: "dll"
+	compile group: "gov.ca.cwds.api.libs", name: "lzw", version: "1", ext: "lib"
+	compile group: "gov.ca.cwds.api.libs", name: "securezip-toolkit", version: "1"
+	compile 'commons-io:commons-io:2.6'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	compile 'com.logicaldoc:logicaldoc-webservice:8.3.2'
+	compile 'com.logicaldoc:logicaldoc-core:8.3.2'
+	compile 'com.logicaldoc:logicaldoc-util:8.3.2'
+	// https://mvnrepository.com/artifact/net.minidev/json-smart
+	compile group: 'net.minidev', name: 'json-smart', version: '2.1.0'  //provided JsonReader for logicaldoc-core dependency
+
+
+
+}
+
+test {
+	useJUnitPlatform()
+}
