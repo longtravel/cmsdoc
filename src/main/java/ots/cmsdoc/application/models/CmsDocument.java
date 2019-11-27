@@ -242,13 +242,6 @@ public class CmsDocument {
     }
 
     /**
-     * @param blobSegment add a binary, compressed BLOB segment
-     */
-    public void addBlobSegment(CmsDocumentBlobSegment blobSegment) {
-        this.blobSegments.add(blobSegment);
-    }
-
-    /**
      * @param blobSegments Set of binary, compressed segments
      */
     public void setBlobSegments(Set<CmsDocumentBlobSegment> blobSegments) {

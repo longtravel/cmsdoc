@@ -22,12 +22,6 @@ public class DataSourceBean {
         this.props=props;
     }
     
-    /*@Bean
-
-        dataSourceBuilder.url("jdbc:db2://localhost:50000/DB0TDEV:currentSchema=CWSINT;");
-        dataSourceBuilder.username("db2inst1");
-        dataSourceBuilder.password("db2inst1");
-    */
     @Bean
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();

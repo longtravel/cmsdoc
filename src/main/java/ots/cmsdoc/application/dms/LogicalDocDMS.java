@@ -12,7 +12,6 @@ import ots.cmsdoc.application.util.CmsProperties;
 
 @Component
 public class LogicalDocDMS implements Dms {
-  //TODO: put these into the application properties file
   private CmsProperties props;
 
   @Autowired
@@ -21,7 +20,6 @@ public class LogicalDocDMS implements Dms {
   }
 
   private void DmsLogicalImpl() {
-
     System.out.println("Initiating DMS LogicalDoc");
   }
 
@@ -36,7 +34,6 @@ public class LogicalDocDMS implements Dms {
     }
     // get the filesize in order to check
     long fsize = file.length();
-    //System.out.println("FileSize of the source file: " + fsize);
     WSDocument wsdocument = new WSDocument();
     wsdocument.setFolderId(props.getDmsFolderId());// this is required by LogicalDoc
     wsdocument.setFileName(file.getName());
@@ -55,16 +52,8 @@ public class LogicalDocDMS implements Dms {
 
   private WSAttribute[] setLogicalDocMetadata(HashMap map) {
     WSAttribute[] wsa = new WSAttribute[map.size()];
-    //WSAttribute attr1 = new WSAttribute();
     // =========== countryCode
     // NOTE: if the attributes are set to "mandatory", not including them will result in a error 500
-    //TODO: set values based on Hashmap
-    /*attr1.setName("docDate");
-    attr1.setType(3);
-    attr1.setDateValue(map.get("docDate").toString());
-    attr1.setSetId(templateID);
-    attr1.setValue(map.get("docDate").toString());
-    wsa[0] = attr1;*/
     // === Doc Locator ======
     WSAttribute attr1 = new WSAttribute();
     attr1.setName("docLocator");

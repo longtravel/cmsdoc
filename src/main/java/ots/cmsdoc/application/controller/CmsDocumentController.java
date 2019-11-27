@@ -1,5 +1,6 @@
 package ots.cmsdoc.application.controller;
 
+import static org.apache.commons.lang3.StringUtils.trim;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.nio.file.Path;
@@ -43,7 +44,7 @@ public class CmsDocumentController {
         cmsDoc = cmsDocOpt.get();
         Compression compression = new Compression(cmsDoc);  // get the base doc
         String filePath =  props.getFileStorage() + "/" + cmsDoc.getDocName();
-        Path locFile = Paths.get(filePath);
+        Path locFile = Paths.get(trim(filePath));
         if(compression.writeFile(locFile)) {
           return (saveToDms(filePath, cmsDoc));
         } else {

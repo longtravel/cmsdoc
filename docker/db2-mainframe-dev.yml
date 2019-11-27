@@ -1,0 +1,33 @@
+version: '2.3'
+services:
+  # use mainframe db2 data
+
+  logicaldoc-ce:
+    image: logicaldoc/logicaldoc-ce:8.3.2
+    command: ["./wait-for-it.sh", "mysql-ld:3306", "-t", "30", "--", "/opt/logicaldoc/start-logicaldoc.sh", "run"]
+    environment:
+      LDOC_MEMORY: 2000
+      DB_USER: ldoc
+      DB_PASSWORD: ldoc2020
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
+    restart: always
+    volumes:
+      - C:\LogicalDOC-Community\docker-vol\conf:/opt/logicaldoc/conf
+      - C:\LogicalDOC-Community\docker-vol\repo:/opt/logicaldoc/repository
+    depends_on:
+      - mysql-ld
+
+  mysql-ld:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE: logicaldoc
+      MYSQL_USER: ldoc
+      MYSQL_PASSWORD: ldoc2020

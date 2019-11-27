@@ -52,6 +52,7 @@ public class Compression {
     String retval = "";
 
     //TODO: test that doc is not null, or put that test in teh constructor
+    //TODO: add tests for each compression method
     if (doc.getCompressionMethod().endsWith(COMPRESSION_TYPE_LZW)) {
       final LZWEncoder lzw = lzwSupplier.get();
       if (!lzw.didLibraryLoad()) {
@@ -69,7 +70,6 @@ public class Compression {
 
     return retval;
   }
-
 
   /**
    * Decompress (inflate) a PKWare-compressed document by assembling blob segments and calling Java
