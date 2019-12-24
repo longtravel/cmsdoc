@@ -202,6 +202,9 @@ public class Compression {
     }
   }
 
+  //TODO - write unit test for good locfile path
+  //TODO - write unit test for bad locFile path
+  //TODO - write unit test for excepting handdling
   public boolean writeFile(Path locFile) {
     //byte[] blobOut = null;
     // convert the encoded string into bytes, and then "undo" the base64 encoding to store as binary

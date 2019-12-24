@@ -1,0 +1,37 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    DOCKER_USER: docker-creds:username
+    DOCKER_PASS: docker-creds:password
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+    commands:
+      - echo Entering install phase...
+  pre_build:
+    commands:
+      - echo Logging into docker...
+      - echo user is $DOCKER_USER
+      - REPOSITORY_URI=doubleb/pipeline
+      - REPOSITORY_VERSION=1.0.0
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  build:
+    commands:
+      - echo Build started on `date`
+      - chmod 777 gradlew
+      - ./gradlew build
+  post_build:
+    commands:
+      - echo build completed. startign post-build...
+      - docker build -t doubleb/pipeline:1.0.0 .
+      - docker push doubleb/pipeline:1.0.0
+      - echo Writing image definitions file...
+      - printf '[{"name":"pipeline","imageUri":"%s"}]' $REPOSITORY_URI:$REPOSITORY_VERSION > imagedefinitions.json
+artifacts:
+  type: zip
+  files:
+    - 'build/libs/*.jar'
+    - 'imagedefinitions.json'

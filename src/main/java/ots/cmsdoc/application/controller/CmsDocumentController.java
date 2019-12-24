@@ -35,6 +35,7 @@ public class CmsDocumentController {
     this.cmsRepo = cmsRepo;
   }
 
+//TODO - break this into two parts: the service that can be integration testted, and the method for saving a file
     //@ApiOperation(value = "Retrieve a CMS doc and save to configurable storage")
     @RequestMapping(value = "/file", method = POST)
     public boolean saveFile(String locator) {
@@ -56,10 +57,12 @@ public class CmsDocumentController {
       return false;
     }
 
+    //TODO - add test to mock DMS and return true
     private boolean saveToDms (String file, CmsDocument doc) {
       HashMap<String, String> metadata = new HashMap<String, String>();
       metadata.put("docName", doc.getDocName());
       metadata.put("docLocator", doc.getId());
+      //TODO - add exception handling
       return(dms.save(file,metadata));
     }
 }

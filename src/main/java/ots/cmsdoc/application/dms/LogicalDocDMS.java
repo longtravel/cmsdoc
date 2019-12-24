@@ -1,3 +1,5 @@
+//TODO - add LogicalDoc overview, compared to Nuxeo
+
 package ots.cmsdoc.application.dms;
 
 import com.logicaldoc.webservice.model.WSAttribute;
@@ -23,6 +25,7 @@ public class LogicalDocDMS implements Dms {
     System.out.println("Initiating DMS LogicalDoc");
   }
 
+  //TODO - add tests for save, mocking api call (unit test, not integration test)
   public boolean save(String filename, HashMap map) {
     // String restEndpt = props.getDocApi();
     RestDocumentClient restClient = new RestDocumentClient( props.getDocApi(), props.getDmsUser(), props.getDmsPass());
